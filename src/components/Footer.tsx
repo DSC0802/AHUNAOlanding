@@ -10,10 +10,7 @@ const Footer: FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Logo and Description */}
           <div className="md:col-span-1">
-            <a
-              href="#home"
-              className="text-xl font-bold text-slate-900 dark:text-white"
-            >
+            <a href="#home" className="text-xl font-bold text-white">
               AHUNAO
               <span className="text-orange-600 dark:text-orange-400">
                 Caribe
