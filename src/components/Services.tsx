@@ -63,8 +63,8 @@ const Services: FC = () => {
 
   return (
     <section
-      id="servicios"
-      className="py-20 bg-slate-800 text-white"
+      id="services"
+      className="py-20 bg-white text-slate-900 md:bg-slate-900 md:text-white"
       ref={sectionRef}
     >
       <div className="container mx-auto px-4 md:px-6">
@@ -76,10 +76,10 @@ const Services: FC = () => {
           <h3 className="text-sm font-semibold uppercase tracking-wider text-yellow-500 mb-2">
             SERVICIOS
           </h3>
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 md:text-white">
             Servicios: Construcción, reparaciones y accesorios
           </h2>
-          <p className="mt-3 text-slate-300">
+          <p className="mt-3 text-slate-600 md:text-slate-300">
             Servicio personalizado, producto de calidad y garantía en todas las
             reparaciones.
           </p>
@@ -97,10 +97,10 @@ const Services: FC = () => {
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className="flex justify-center mb-6">{service.icon}</div>
-              <h4 className="text-xl font-semibold text-white mb-3">
+              <h4 className="text-xl font-semibold text-slate-900 md:text-white mb-3">
                 {service.title}
               </h4>
-              <p className="text-slate-300 text-sm leading-relaxed">
+              <p className="text-slate-600 md:text-slate-300 text-sm leading-relaxed">
                 {service.description}
               </p>
             </div>

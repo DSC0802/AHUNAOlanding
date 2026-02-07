@@ -80,58 +80,66 @@ const Contact: React.FC = () => {
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const validatePhone = (phone: string) =>
     phone.replace(/[^0-9]/g, "").length >= 7;
+  const validateName = (value: string) =>
+    /^[A-Za-zÀ-ÖØ-öø-ÿÑñ\s.'-]+$/.test(value);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
     const { name, email, subject, message, orderNumber, phone } = formState;
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
 
-    if (!name || name.trim().length < 2)
+    if (!trimmedName || trimmedName.length < 2)
       newErrors.name = "Por favor ingrese su nombre (al menos 2 caracteres).";
-    if (!email || !validateEmail(email))
-      newErrors.email = "Por favor ingrese un correo válido.";
+    else if (!validateName(trimmedName))
+      newErrors.name = "El nombre no debe contener números.";
+    if (!trimmedEmail || !validateEmail(trimmedEmail))
+      newErrors.email = "Por favor ingrese un correo valido.";
 
     const allowedSubjects = [
       "Solicitud de presupuesto",
-      "Consulta técnica",
+      "Consulta t�cnica",
       "Mantenimiento",
       "Proyecto existente",
       "Otros",
     ];
     if (!subject || !allowedSubjects.includes(subject))
-      newErrors.subject = "Por favor seleccione un motivo válido.";
+      newErrors.subject = "Por favor seleccione un motivo valido.";
 
-    if (!message || message.trim().length < 10)
+    if (!trimmedMessage || trimmedMessage.length < 10)
       newErrors.message =
-        "Por favor escriba un mensaje más detallado (al menos 10 caracteres).";
+        "Por favor escriba un mensaje mas detallado (al menos 10 caracteres).";
 
-    if (subject === "Proyecto existente") {
+    if (subject == "Proyecto existente") {
       if (!orderNumber || orderNumber.trim().length < 4)
         newErrors.orderNumber =
-          "Por favor indique el número o referencia del proyecto.";
+          "Por favor indique el numero o referencia del proyecto.";
     }
 
-    if (subject === "Consulta técnica") {
+    if (subject == "Consulta t�cnica") {
       if (!phone || !validatePhone(phone))
-        newErrors.phone = "Por favor ingrese un teléfono de contacto válido.";
+        newErrors.phone = "Por favor ingrese un telefono de contacto valido.";
     }
 
-    if (subject === "Solicitud de presupuesto") {
+    if (subject == "Solicitud de presupuesto") {
       if (
         !formState.projectReference ||
         formState.projectReference.trim().length < 2
       )
         newErrors.projectReference =
-          "Por favor indique referencia o breve descripción del proyecto.";
+          "Por favor indique referencia o breve descripcion del proyecto.";
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return newErrors;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateForm()) {
-      const firstKey = Object.keys(errors)[0];
+    const newErrors = validateForm();
+    if (Object.keys(newErrors).length > 0) {
+      const firstKey = Object.keys(newErrors)[0];
       const el = firstKey
         ? (formRef.current?.querySelector(
             `[name="${firstKey}"]`,
@@ -147,7 +155,7 @@ const Contact: React.FC = () => {
     setFormState({
       name: "",
       email: "",
-      subject: "Product availability",
+      subject: "Solicitud de presupuesto",
       message: "",
       orderNumber: "",
       phone: "",
@@ -327,6 +335,7 @@ const Contact: React.FC = () => {
                       name="name"
                       value={formState.name}
                       onChange={handleChange}
+                      pattern="[A-Za-zÀ-ÖØ-öø-ÿÑñ\\s.'-]+"
                       className={`w-full px-4 py-2 rounded-lg border ${errors.name ? "border-red-500" : "border-slate-300"} dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white`}
                     />
                     {errors.name && (
@@ -372,7 +381,7 @@ const Contact: React.FC = () => {
                     className={`w-full px-4 py-2 rounded-lg border ${errors.subject ? "border-red-500" : "border-slate-300"} dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white`}
                   >
                     <option>Solicitud de presupuesto</option>
-                    <option>Consulta técnica</option>
+                    <option>Consulta t�cnica</option>
                     <option>Mantenimiento</option>
                     <option>Proyecto existente</option>
                     <option>Otros</option>
@@ -431,7 +440,7 @@ const Contact: React.FC = () => {
                   </div>
                 ) : null}
 
-                {subject === "Consulta técnica" && (
+                {subject === "Consulta t�cnica" && (
                   <div>
                     <label
                       htmlFor="phone"
