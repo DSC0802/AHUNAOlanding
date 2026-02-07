@@ -1,21 +1,23 @@
 import { useEffect, useRef, type FC } from "react";
-import { Hammer, HardHat, Shovel } from "lucide-react";
+import hammerIcon from "/hammer.svg";
+import helmetIcon from "/hard-hat.svg";
+import shovelIcon from "/shovel.svg";
 
 const servicesData = [
   {
-    icon: <Hammer size={40} className="text-orange-500" />,
+    icon: <img src={hammerIcon} className="w-10 h-10" />,
     title: "Construcción Residencial",
     description:
       "Diseño y ejecución de viviendas con acabados de calidad y cumplimiento normativo.",
   },
   {
-    icon: <HardHat size={40} className="text-orange-500" />,
+    icon: <img src={helmetIcon} className="w-10 h-10" />,
     title: "Obras Comerciales e Industriales",
     description:
       "Proyectos a gran escala, coordinación técnica y control de calidad en cada fase.",
   },
   {
-    icon: <Shovel size={40} className="text-orange-500" />,
+    icon: <img src={shovelIcon} className="w-10 h-10" />,
     title: "Remodelaciones y Mantenimiento",
     description:
       "Renovaciones integrales, rehabilitación estructural y planes de mantenimiento preventivo.",

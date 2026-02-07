@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import SectionTitle from "./ui/SectionTitle";
-import LoginModal from "./LoginModal";
-import RegisterModal from "./RegisterModal";
+//import LoginModal from "./LoginModal";
+//import RegisterModal from "./RegisterModal";
 import Hotel from "/hotel.webp";
 import PuenGrandes from "/PuentesGrandes.jpg";
 import Colonial from "/HotelColonial.jpg";

@@ -151,7 +151,7 @@ const Contact: React.FC = () => {
       message: "",
       orderNumber: "",
       phone: "",
-      productModel: "",
+      projectReference: "",
     });
     setErrors({});
     setTimeout(() => setFormSubmitted(false), 3000);
